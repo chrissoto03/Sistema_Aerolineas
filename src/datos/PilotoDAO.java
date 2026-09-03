@@ -16,7 +16,7 @@ import java.util.List;
 public class PilotoDAO {
     public boolean insertar(Piloto piloto){
         String sql = "insert into pilotos(cedula,nombre,apellidos,fecha_nacimiento,"
-                + "estado_civil,numero_licencia, fecha_vencimiento_licencia)"
+                + "estado_civil,numero_licencia, fecha_vencimiento_licencia) "
                 + "values (?,?,?,?,?,?,?)";
         
         try (Connection con = ConexionDB.obtenerConexion();
@@ -40,8 +40,8 @@ public class PilotoDAO {
     
     public boolean modificar(Piloto piloto){
         String sql = "update pilotos set cedula = ?, nombre= ?,apellidos = ?,"
-                + "fecha_nacimiento =?, estado_civil =?,numero_licencia = ?,"
-                + "fecha_vencimiento_licencia = ? where id_piloto = ?";
+                + "fecha_nacimiento = ?, estado_civil = ?,numero_licencia = ?, "
+                + "fecha_vencimiento_licencia = ? where id_piloto = ? ";
         
         try (Connection con = ConexionDB.obtenerConexion();
                 PreparedStatement ps = con.prepareStatement(sql)){

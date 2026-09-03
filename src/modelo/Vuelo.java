@@ -4,7 +4,8 @@
  */
 package modelo;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 
 /**
  *
@@ -16,10 +17,10 @@ public class Vuelo {
     private Piloto piloto;
     private String paisDestino;
     private String ciudadDestino;
-    private LocalDate fechaHoraSalida;
+    private LocalDateTime fechaHoraSalida;
     private String estado;
 
-    public Vuelo(int idVuelo, Avion avion, Piloto piloto, String paisDestino, String ciudadDestino, LocalDate fechaHoraSalida, String estado) {
+    public Vuelo(int idVuelo, Avion avion, Piloto piloto, String paisDestino, String ciudadDestino, LocalDateTime fechaHoraSalida, String estado) {
         this.idVuelo = idVuelo;
         this.avion = avion;
         this.piloto = piloto;
@@ -73,11 +74,11 @@ public class Vuelo {
         this.ciudadDestino = ciudadDestino;
     }
 
-    public LocalDate getFechaHoraSalida() {
+    public LocalDateTime getFechaHoraSalida() {
         return fechaHoraSalida;
     }
 
-    public void setFechaHoraSalida(LocalDate fechaHoraSalida) {
+    public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
         this.fechaHoraSalida = fechaHoraSalida;
     }
 
