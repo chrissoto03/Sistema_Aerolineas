@@ -11,13 +11,13 @@ import java.time.LocalDate;
  * @author chris
  */
 public class Pasajero {
-    private String idPasajero;
+    private int idPasajero;
     private String cedula;
     private String nombreCompleto;
     private String pasaporte;
     private LocalDate fechaVencimientoPasaporte;
 
-    public Pasajero(String idPasajero, String cedula, String nombreCompleto, String pasaporte, LocalDate fechaVencimientoPasaporte) {
+    public Pasajero(int idPasajero, String cedula, String nombreCompleto, String pasaporte, LocalDate fechaVencimientoPasaporte) {
         this.idPasajero = idPasajero;
         this.cedula = cedula;
         this.nombreCompleto = nombreCompleto;
@@ -29,11 +29,11 @@ public class Pasajero {
         
     }
     
-    public String getIdPasajero() {
+    public int getIdPasajero() {
         return idPasajero;
     }
 
-    public void setIdPasajero(String idPasajero) {
+    public void setIdPasajero(int idPasajero) {
         this.idPasajero = idPasajero;
     }
 
