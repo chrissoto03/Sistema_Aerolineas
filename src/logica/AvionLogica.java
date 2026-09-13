@@ -23,7 +23,7 @@ public class AvionLogica {
         }
     }
     
-    private void modifcarAvion(Avion avion) throws Exception{
+    public void modificarAvion(Avion avion) throws Exception{
         validarDatos(avion);
         boolean modificado = avionDAO.modificarAvion(avion);
         if (!modificado) {
@@ -51,6 +51,9 @@ public class AvionLogica {
         }
         if (avion.getEstado() == null || avion.getEstado().trim().isEmpty()) {
             throw new Exception("Debe seleccionar un estado (Activo/Inactivo). ");
+        }
+        if (!"Activo".equals(avion.getEstado()) && !"Inactivo".equals(avion.getEstado())) {
+            throw new Exception("Debe seleccionar un estado válido (Activo/Inactivo).");
         }
     }
 }

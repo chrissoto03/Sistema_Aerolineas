@@ -26,7 +26,7 @@ public class AerolineaDAO {
             return filasAfectadas > 0;
 
         } catch (SQLException e) {
-            System.out.println("Error al insertar aerolínea: " + e.getMessage());
+            System.out.println("Error al insertar aerolinea: " + e.getMessage());
             return false;
         }
     }

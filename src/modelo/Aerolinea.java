@@ -41,4 +41,20 @@ public class Aerolinea {
     public String toString(){
         return nombre;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Aerolinea otra = (Aerolinea) obj;
+        return this.idAerolinea == otra.idAerolinea;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(idAerolinea);
+    }
 }

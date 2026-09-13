@@ -47,6 +47,7 @@ public class AvionDAO {
              ps.setString(2, avion.getModelo());
              ps.setInt(3,avion.getCapacidad());
              ps.setString(4, avion.getEstado());
+             ps.setInt(5, avion.getIdAvion());
              
              int filasAfectadas = ps.executeUpdate();
              return filasAfectadas > 0;
