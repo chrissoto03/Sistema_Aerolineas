@@ -36,7 +36,7 @@ public class AvionLogica {
     }
     
     public List<Avion> listarAvionesActivos(){
-        return avionDAO.listarAviones();
+        return avionDAO.listarActivos();
     }
     
     private void validarDatos(Avion avion)throws Exception{

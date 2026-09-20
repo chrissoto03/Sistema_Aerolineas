@@ -91,7 +91,7 @@ public class AvionDAO {
         return lista;
     }
     
-    public List<Avion> listarAviones(){
+    public List<Avion> listarActivos(){
         List<Avion> lista = new ArrayList<>();
         
         String sql = "select a.id_avion, a.modelo, a.capacidad, a.estado,"
@@ -100,7 +100,7 @@ public class AvionDAO {
                 + "inner join aerolineas ae on a.id_aerolinea = ae.id_aerolinea "
                 + "where a.estado = 'Activo' "
                 + "order by a.id_avion";
-        
+
         try (Connection con = ConexionDB.obtenerConexion();
                 PreparedStatement ps = con.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery()){
@@ -112,7 +112,7 @@ public class AvionDAO {
                 );
                 
                 Avion avion = new Avion(
-                        rs.getInt("id_aerolinea"),
+                        rs.getInt("id_avion"),
                         aerolinea,
                         rs.getString("modelo"),
                         rs.getInt("capacidad"),
