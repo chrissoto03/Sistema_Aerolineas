@@ -60,6 +60,11 @@ public class TicketLogica {
         return ticketDAO.listar();
     }
     
+    public int asientosDisponibles(Vuelo vuelo) {
+        int ocupados = ticketDAO.contarAsientosOcupados(vuelo.getIdVuelo());
+        return vuelo.getAvion().getCapacidad() - ocupados;
+    }
+    
     private void validarDatosBasicos(String cedula,String nombreCompleto, String pasaporte,
             LocalDate fechaVencimientoPasaporte, Vuelo vuelo, String numeroAsiento) throws Exception{
         if (cedula == null || cedula.trim().isEmpty()) {

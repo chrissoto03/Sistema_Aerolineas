@@ -6,6 +6,7 @@ package modelo;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -89,6 +90,11 @@ public class Vuelo {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+    @Override
+    public String toString() {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return "Vuelo #" + idVuelo + " - " + paisDestino + ", " + ciudadDestino
+                + " (" + fechaHoraSalida.format(formato) + ")";
+    }
     
 }
