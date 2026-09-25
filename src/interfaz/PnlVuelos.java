@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package interfaz;
 
@@ -23,79 +23,83 @@ import java.time.format.DateTimeFormatter;
  *
  * @author chris
  */
-public class FrmVuelos extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmVuelos.class.getName());
+public class PnlVuelos extends javax.swing.JPanel {
+ 
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PnlVuelos.class.getName());
     private final VueloLogica vueloLogica = new VueloLogica();
     private final PilotoLogica pilotoLogica = new PilotoLogica();
-    private final AvionLogica avionLogica= new AvionLogica();
+    private final AvionLogica avionLogica = new AvionLogica();
     private Vuelo vueloSeleccionado = null;
     private final DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
     /**
-     * Creates new form FrmVuelos
+     * Creates new form PnlVuelos
      */
-    public FrmVuelos() {
+    public PnlVuelos() {
         initComponents();
-        setLocationRelativeTo(null);
         Config_jspinnerHora();
         cargarVuelos();
         cargarPilotos();
         cargarTablaVuelos();
+        actualizarDatos();
     }
-    private void Config_jspinnerHora(){
-        SpinnerDateModel modeloHora= new SpinnerDateModel();
+
+    private void Config_jspinnerHora() {
+        SpinnerDateModel modeloHora = new SpinnerDateModel();
         spnHoraSalida.setModel(modeloHora);
-        JSpinner.DateEditor editor = new JSpinner.DateEditor(spnHoraSalida,"HH:mm");
+        JSpinner.DateEditor editor = new JSpinner.DateEditor(spnHoraSalida, "HH:mm");
         spnHoraSalida.setEditor(editor);
     }
-    private void cargarVuelos(){
+
+    private void cargarVuelos() {
         cmbAvion.removeAllItems();
         List<Avion> aviones = avionLogica.listarAvionesActivos();
         for (Avion a : aviones) {
             cmbAvion.addItem(a);
         }
     }
-    
-    private void cargarPilotos(){
+
+    private void cargarPilotos() {
         cmbPiloto.removeAllItems();
         List<Piloto> pilotos = pilotoLogica.listarPilotosConLicenciaVigente();
         for (Piloto p : pilotos) {
             cmbPiloto.addItem(p);
         }
     }
-    
-    private void cargarTablaVuelos(){
+
+    private void cargarTablaVuelos() {
         DefaultTableModel modelo = (DefaultTableModel) tblVuelos.getModel();
         modelo.setRowCount(0);
-        
+
         List<Vuelo> vuelos = vueloLogica.listarVuelos();
         for (Vuelo v : vuelos) {
             Object[] fila = {
-              v.getIdVuelo(),
-              v.getAvion().getAerolinea().getNombre(),
-              v.getAvion().getModelo(),
-              v.getPiloto().getNombre() + " "+ v.getPiloto().getApellidos(),
-              v.getPaisDestino(),
-              v.getCiudadDestino(),
-              v.getFechaHoraSalida().format(formatoFecha),
-              v.getEstado()
+                v.getIdVuelo(),
+                v.getAvion().getAerolinea().getNombre(),
+                v.getAvion().getModelo(),
+                v.getPiloto().getNombre() + " " + v.getPiloto().getApellidos(),
+                v.getPaisDestino(),
+                v.getCiudadDestino(),
+                v.getFechaHoraSalida().format(formatoFecha),
+                v.getEstado()
             };
             modelo.addRow(fila);
         }
     }
-    private void limpiarFormulario(){
+
+    private void limpiarFormulario() {
         txtPaisDestino.setText("");
         txtCiudadDestino.setText("");
         dchFechaSalida.setDate(null);
         spnHoraSalida.setValue(new Date());
     }
-    
-    private LocalDateTime obtenerFechaHoraSeleccionada(){
+
+    private LocalDateTime obtenerFechaHoraSeleccionada() {
         Date fechaSeleccionada = dchFechaSalida.getDate();
         if (fechaSeleccionada == null) {
             return null;
         }
-        
+
         LocalDate fecha = fechaSeleccionada.toInstant()
                 .atZone(ZoneId.systemDefault()).toLocalDate();
         Date horaSeleccionada = (Date) spnHoraSalida.getValue();
@@ -103,7 +107,13 @@ public class FrmVuelos extends javax.swing.JFrame {
                 .atZone(ZoneId.systemDefault()).toLocalTime();
         return LocalDateTime.of(fecha, hora);
     }
-        
+    public void actualizarDatos() {
+        cargarVuelos();
+        cargarPilotos();
+        cargarTablaVuelos();
+    }
+ 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,8 +146,6 @@ public class FrmVuelos extends javax.swing.JFrame {
         btnCancelarVuelo = new javax.swing.JButton();
         btnFinalizarVuelo = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tblVuelos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -303,7 +311,7 @@ public class FrmVuelos extends javax.swing.JFrame {
             .addGroup(pnlBotonesLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnFinalizarVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCancelarVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -346,8 +354,8 @@ public class FrmVuelos extends javax.swing.JFrame {
                 .addComponent(pnlListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -356,8 +364,6 @@ public class FrmVuelos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblVuelosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVuelosMouseClicked
@@ -367,7 +373,7 @@ public class FrmVuelos extends javax.swing.JFrame {
         }
         List<Vuelo> vuelos = vueloLogica.listarVuelos();
         vueloSeleccionado = vuelos.get(filaSeleccionada);
-        
+
     }//GEN-LAST:event_tblVuelosMouseClicked
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -379,22 +385,22 @@ public class FrmVuelos extends javax.swing.JFrame {
             vuelo.setCiudadDestino(txtCiudadDestino.getText());
             vuelo.setFechaHoraSalida(obtenerFechaHoraSeleccionada());
             vuelo.setEstado("Programado");
-            
+
             vueloLogica.registrarVuelo(vuelo);
             JOptionPane.showMessageDialog(this, "Vuelo registrado con exito. ");
             limpiarFormulario();
             cargarTablaVuelos();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
+                "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVueloActionPerformed
         if (vueloSeleccionado == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un vuelo de la tabla primero. ",
-                    "Aviso", JOptionPane.WARNING_MESSAGE);
+                "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
         try {
@@ -405,14 +411,14 @@ public class FrmVuelos extends javax.swing.JFrame {
             cargarTablaVuelos();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
+                "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnCancelarVueloActionPerformed
 
     private void btnFinalizarVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVueloActionPerformed
         if (vueloSeleccionado == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un vuelo de la tabla. ",
-                    "Aviso",JOptionPane.WARNING_MESSAGE);
+                "Aviso",JOptionPane.WARNING_MESSAGE);
             return;
         }
         try {
@@ -421,10 +427,10 @@ public class FrmVuelos extends javax.swing.JFrame {
             vueloSeleccionado = null;
             tblVuelos.clearSelection();
             cargarTablaVuelos();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
+                "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnFinalizarVueloActionPerformed
 
@@ -434,30 +440,6 @@ public class FrmVuelos extends javax.swing.JFrame {
         tblVuelos.clearSelection();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmVuelos().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarVuelo;

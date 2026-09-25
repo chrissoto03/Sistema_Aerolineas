@@ -1,38 +1,37 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package interfaz;
 
-import logica.*;
-import modelo.*;
-import javax.swing.table.DefaultTableCellRenderer;
+import logica.AvionLogica;
+import logica.AerolineaLogica;
+import modelo.Avion;
+import modelo.Aerolinea;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author chris
  */
-public class FrmAviones extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmAviones.class.getName());
+public class PnlAviones extends javax.swing.JPanel {
+
     private final AvionLogica avionLogica = new AvionLogica();
     private final AerolineaLogica aerolineaLogica = new AerolineaLogica();
     private Avion avionSeleccionado = null;
     
     /**
-     * Creates new form FrmAviones
+     * Creates new form PnlAviones
      */
-    public FrmAviones() {
+    public PnlAviones() {
         initComponents();
-        setLocationRelativeTo(null);
         cargarAerolineas();
         cargarTablasAviones();
     }
-    
     private void cargarAerolineas(){
+        cmbAerolinea.removeAllItems();
         List<Aerolinea> aerolineas = aerolineaLogica.listarAerolineas();
         for (Aerolinea a : aerolineas) {
             cmbAerolinea.addItem(a);
@@ -59,6 +58,10 @@ public class FrmAviones extends javax.swing.JFrame {
         txtModelo.setText("");
         txtCapacidad.setText("");
         cmbEstado.setSelectedIndex(0);
+    }
+    public void actualizarDatos() {
+        cargarAerolineas();
+        cargarTablasAviones();
     }
 
     /**
@@ -88,8 +91,6 @@ public class FrmAviones extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tblAviones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -272,8 +273,8 @@ public class FrmAviones extends javax.swing.JFrame {
                 .addComponent(pnlListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,32 +283,7 @@ public class FrmAviones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        try {
-            Avion avion = new Avion();
-            avion.setAerolinea((Aerolinea) cmbAerolinea.getSelectedItem());
-            avion.setModelo(txtModelo.getText());
-            avion.setCapacidad(Integer.parseInt(txtCapacidad.getText().trim()));
-            avion.setEstado((String) cmbEstado.getSelectedItem());
-            
-            avionLogica.registrarAvion(avion);
-            JOptionPane.showMessageDialog(this, "Avion registrado con exito. ");
-            limpiarFormulario();
-            cargarTablasAviones();
-            
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "La capacidad debe ser un numero valido.",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage(),
-                    "Error",JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void tblAvionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAvionesMouseClicked
         int filaSelecionada = tblAviones.getSelectedRow();
@@ -316,17 +292,40 @@ public class FrmAviones extends javax.swing.JFrame {
         }
         List<Avion> aviones = avionLogica.listarAviones();
         avionSeleccionado = aviones.get(filaSelecionada);
-        
+
         cmbAerolinea.setSelectedItem(avionSeleccionado.getAerolinea());
         txtModelo.setText(avionSeleccionado.getModelo());
         txtCapacidad.setText(String.valueOf(avionSeleccionado.getCapacidad()));
         cmbEstado.setSelectedItem(avionSeleccionado.getEstado());
     }//GEN-LAST:event_tblAvionesMouseClicked
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        try {
+            Avion avion = new Avion();
+            avion.setAerolinea((Aerolinea) cmbAerolinea.getSelectedItem());
+            avion.setModelo(txtModelo.getText());
+            avion.setCapacidad(Integer.parseInt(txtCapacidad.getText().trim()));
+            avion.setEstado((String) cmbEstado.getSelectedItem());
+
+            avionLogica.registrarAvion(avion);
+            JOptionPane.showMessageDialog(this, "Avion registrado con exito. ");
+            limpiarFormulario();
+            cargarTablasAviones();
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La capacidad debe ser un numero valido.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage(),
+                "Error",JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         if (avionSeleccionado == null) {
             JOptionPane.showMessageDialog(this, "Debe selecionar un avion de la tabla primero.",
-                    "Aviso", JOptionPane.WARNING_MESSAGE);
+                "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
         try {
@@ -334,19 +333,19 @@ public class FrmAviones extends javax.swing.JFrame {
             avionSeleccionado.setModelo(txtModelo.getText());
             avionSeleccionado.setCapacidad(Integer.parseInt(txtCapacidad.getText().trim()));
             avionSeleccionado.setEstado((String) cmbEstado.getSelectedItem());
-            
-           avionLogica.modificarAvion(avionSeleccionado);
-           JOptionPane.showMessageDialog(this, "Avion modificado con exito. ");
-           limpiarFormulario();
-           cargarTablasAviones();
-           avionSeleccionado = null;
-           
+
+            avionLogica.modificarAvion(avionSeleccionado);
+            JOptionPane.showMessageDialog(this, "Avion modificado con exito. ");
+            limpiarFormulario();
+            cargarTablasAviones();
+            avionSeleccionado = null;
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "La capacidad debe ser un numero valido. ",
-                   "Error", JOptionPane.ERROR_MESSAGE);
+                "Error", JOptionPane.ERROR_MESSAGE);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
+                "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -356,30 +355,6 @@ public class FrmAviones extends javax.swing.JFrame {
         tblAviones.clearSelection();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmAviones().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;

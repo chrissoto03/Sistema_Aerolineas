@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package interfaz;
 
@@ -21,23 +21,21 @@ import java.time.format.DateTimeFormatter;
  *
  * @author chris
  */
-public class FrmCompraTiquetes extends javax.swing.JFrame {
+public class PnlCompraTiquetes extends javax.swing.JPanel {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmCompraTiquetes.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PnlCompraTiquetes.class.getName());
     private final VueloLogica vueloLogica = new VueloLogica();
     private final TicketLogica ticketLogica = new TicketLogica();
     private Vuelo vueloSeleccionado = null;
-
     /**
-     * Creates new form FrmCompraTiquetes
+     * Creates new form PnlCompraTiquetes
      */
-    public FrmCompraTiquetes() {
+    public PnlCompraTiquetes() {
         initComponents();
-        setLocationRelativeTo(null);
         cargarComboVuelos();
+        actualizarDatos();
     }
-    
-    private void cargarComboVuelos(){
+     private void cargarComboVuelos(){
         cmbVuelo.removeAllItems();
         List<Vuelo> vuelos= vueloLogica.listarVuelosProgramados();
         for (Vuelo v : vuelos) {
@@ -100,7 +98,9 @@ public class FrmCompraTiquetes extends javax.swing.JFrame {
         }
         return fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
-    /*
+    public void actualizarDatos() {
+        cargarComboVuelos();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -125,7 +125,7 @@ public class FrmCompraTiquetes extends javax.swing.JFrame {
         lblInfoDestino = new javax.swing.JLabel();
         lblInfoFechaSalida = new javax.swing.JLabel();
         lblInfoAsientos = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        pnlInfoPasajeros = new javax.swing.JPanel();
         txtCedula = new javax.swing.JTextField();
         lblCedula = new javax.swing.JLabel();
         lblNombreCompleto = new javax.swing.JLabel();
@@ -140,8 +140,6 @@ public class FrmCompraTiquetes extends javax.swing.JFrame {
         pnlBotones = new javax.swing.JPanel();
         btnComprarTiquete = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tblTiquetesVuelo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -179,7 +177,7 @@ public class FrmCompraTiquetes extends javax.swing.JFrame {
             pnlTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTablaLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -217,7 +215,7 @@ public class FrmCompraTiquetes extends javax.swing.JFrame {
                             .addComponent(lblInfoAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlInfoVuelosDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(lblInfoDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                                .addComponent(lblInfoPiloto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                                .addComponent(lblInfoPiloto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
                                 .addComponent(lblInfoAvion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblInfoFechaSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(19, 19, 19))
@@ -269,26 +267,26 @@ public class FrmCompraTiquetes extends javax.swing.JFrame {
         lblTituloInfoPasajeros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTituloInfoPasajeros.setText("Informacion Pasajero:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlInfoPasajerosLayout = new javax.swing.GroupLayout(pnlInfoPasajeros);
+        pnlInfoPasajeros.setLayout(pnlInfoPasajerosLayout);
+        pnlInfoPasajerosLayout.setHorizontalGroup(
+            pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInfoPasajerosLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(lblTituloInfoPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(38, 38, 38))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfoPasajerosLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(lblPasaporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblNombreCompleto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblVencPasaporte, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblnumLicencia1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txtNombreCompleto, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtPasaporte, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtCedula)
@@ -296,28 +294,28 @@ public class FrmCompraTiquetes extends javax.swing.JFrame {
                     .addComponent(txtNumAsiento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlInfoPasajerosLayout.setVerticalGroup(
+            pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInfoPasajerosLayout.createSequentialGroup()
                 .addComponent(lblTituloInfoPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombreCompleto)
                     .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPasaporte)
                     .addComponent(txtPasaporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblVencPasaporte)
                     .addComponent(dchVencePasaporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblnumLicencia1)
                     .addComponent(txtNumAsiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -368,7 +366,7 @@ public class FrmCompraTiquetes extends javax.swing.JFrame {
             .addGroup(pnlFondoLayout.createSequentialGroup()
                 .addComponent(pnlInfoVuelosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlInfoPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnlFondoLayout.createSequentialGroup()
                 .addComponent(pnlTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -382,17 +380,15 @@ public class FrmCompraTiquetes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlInfoVuelosDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlInfoPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlFondoLayout.createSequentialGroup()
-                        .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 195, Short.MAX_VALUE))))
+                    .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -403,47 +399,11 @@ public class FrmCompraTiquetes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblTiquetesVueloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTiquetesVueloMouseClicked
 
     }//GEN-LAST:event_tblTiquetesVueloMouseClicked
-
-    private void btnComprarTiqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarTiqueteActionPerformed
-        if (vueloSeleccionado == null) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un vuelo primero. ",
-                    "Aviso",JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        try {
-            ticketLogica.comprarTicket(
-                    txtCedula.getText(),
-                    txtNombreCompleto.getText(),
-                    txtPasaporte.getText(),
-                    convertirALocalDate(dchVencePasaporte.getDate()),
-                    vueloSeleccionado,
-                    txtNumAsiento.getText()
-            );
-            JOptionPane.showMessageDialog(this, "Tiquete comprado con exito. ");
-            limpiarFormulario();
-            mostrarInfoVuelo();
-            cargarTablaTiquetesDelVuelo();
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnComprarTiqueteActionPerformed
-
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        limpiarFormulario();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaActionPerformed
 
     private void cmbVueloItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbVueloItemStateChanged
         if (evt.getStateChange()!=ItemEvent.SELECTED) {
@@ -454,37 +414,46 @@ public class FrmCompraTiquetes extends javax.swing.JFrame {
         cargarTablaTiquetesDelVuelo();
     }//GEN-LAST:event_cmbVueloItemStateChanged
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmCompraTiquetes().setVisible(true));
-    }
+    private void btnComprarTiqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarTiqueteActionPerformed
+        if (vueloSeleccionado == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un vuelo primero. ",
+                "Aviso",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        try {
+            ticketLogica.comprarTicket(
+                txtCedula.getText(),
+                txtNombreCompleto.getText(),
+                txtPasaporte.getText(),
+                convertirALocalDate(dchVencePasaporte.getDate()),
+                vueloSeleccionado,
+                txtNumAsiento.getText()
+            );
+            JOptionPane.showMessageDialog(this, "Tiquete comprado con exito. ");
+            limpiarFormulario();
+            mostrarInfoVuelo();
+            cargarTablaTiquetesDelVuelo();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(),
+                "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnComprarTiqueteActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiarFormulario();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComprarTiquete;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<Vuelo> cmbVuelo;
     private com.toedter.calendar.JDateChooser dchVencePasaporte;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCapacidad2;
     private javax.swing.JLabel lblCedula;
@@ -502,6 +471,7 @@ public class FrmCompraTiquetes extends javax.swing.JFrame {
     private javax.swing.JLabel lblnumLicencia1;
     private javax.swing.JPanel pnlBotones;
     private javax.swing.JPanel pnlFondo;
+    private javax.swing.JPanel pnlInfoPasajeros;
     private javax.swing.JPanel pnlInfoVuelosDisponibles;
     private javax.swing.JPanel pnlTabla;
     private javax.swing.JTable tblTiquetesVuelo;
