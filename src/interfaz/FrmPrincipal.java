@@ -4,6 +4,7 @@
  */
 package interfaz;
 
+import Iconos.GeneradorIconos;
 import java.awt.CardLayout;
 
 /**
@@ -54,22 +55,33 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pnlFondo = new javax.swing.JPanel();
         pnlMenu = new javax.swing.JPanel();
-        btnMenuAviones = new javax.swing.JButton();
-        btnMenuPilotos = new javax.swing.JButton();
-        btnMenuVuelos = new javax.swing.JButton();
-        btnMenuCompra = new javax.swing.JButton();
-        btnMenuListado = new javax.swing.JButton();
+        btnMenuAviones = new javax.swing.JButton("AVIONES", Iconos.GeneradorIconos.getAvion())
+        ;
+        btnMenuPilotos = new javax.swing.JButton("PILOTOS", Iconos.GeneradorIconos.getPiloto())
+        ;
+        btnMenuVuelos = new javax.swing.JButton("VUELOS", Iconos.GeneradorIconos.getVuelo())
+        ;
+        btnMenuCompra = new javax.swing.JButton("COMPRA TIQUETES", Iconos.GeneradorIconos.getTiquete())
+        ;
+        btnMenuListado = new javax.swing.JButton("LISTADO TIQUETES", Iconos.GeneradorIconos.getListadoTiquetes())
+        ;
         pnlContenido = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
+        pnlFondo.setBackground(new java.awt.Color(232, 236, 243));
         pnlFondo.setLayout(new java.awt.BorderLayout());
 
+        pnlMenu.setBackground(new java.awt.Color(27, 38, 59));
+        pnlMenu.setForeground(new java.awt.Color(255, 255, 255));
         pnlMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnlMenu.setPreferredSize(new java.awt.Dimension(200, 649));
         pnlMenu.setLayout(new javax.swing.BoxLayout(pnlMenu, javax.swing.BoxLayout.Y_AXIS));
 
+        btnMenuAviones.setBackground(new java.awt.Color(27, 38, 59));
         btnMenuAviones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMenuAviones.setForeground(new java.awt.Color(255, 255, 255));
         btnMenuAviones.setText("AVIONES");
         btnMenuAviones.setAlignmentX(0.5F);
         btnMenuAviones.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 0, 8, 0));
@@ -82,7 +94,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         pnlMenu.add(btnMenuAviones);
 
+        btnMenuPilotos.setBackground(new java.awt.Color(27, 38, 59));
         btnMenuPilotos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMenuPilotos.setForeground(new java.awt.Color(255, 255, 255));
         btnMenuPilotos.setText("PILOTOS");
         btnMenuPilotos.setAlignmentX(0.5F);
         btnMenuPilotos.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 0, 8, 0));
@@ -95,7 +109,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         pnlMenu.add(btnMenuPilotos);
 
+        btnMenuVuelos.setBackground(new java.awt.Color(27, 38, 59));
         btnMenuVuelos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMenuVuelos.setForeground(new java.awt.Color(255, 255, 255));
         btnMenuVuelos.setText("VUELOS");
         btnMenuVuelos.setAlignmentX(0.5F);
         btnMenuVuelos.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 0, 8, 0));
@@ -108,7 +124,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         pnlMenu.add(btnMenuVuelos);
 
+        btnMenuCompra.setBackground(new java.awt.Color(27, 38, 59));
         btnMenuCompra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMenuCompra.setForeground(new java.awt.Color(255, 255, 255));
         btnMenuCompra.setText("COMPRA TIQUETES");
         btnMenuCompra.setAlignmentX(0.5F);
         btnMenuCompra.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 0, 8, 0));
@@ -121,7 +139,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         pnlMenu.add(btnMenuCompra);
 
+        btnMenuListado.setBackground(new java.awt.Color(27, 38, 59));
         btnMenuListado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMenuListado.setForeground(new java.awt.Color(255, 255, 255));
         btnMenuListado.setText("LISTADO TIQUETES");
         btnMenuListado.setAlignmentX(0.5F);
         btnMenuListado.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 0, 8, 0));

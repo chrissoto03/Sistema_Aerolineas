@@ -4,6 +4,7 @@
  */
 package interfaz;
 
+import Iconos.GeneradorIconos;
 import logica.*;
 import modelo.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -123,7 +124,24 @@ public class PnlVuelos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlFondo = new javax.swing.JPanel();
+        pnlFondo = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Image img = (java.awt.Image) getClientProperty("background_image");
+                if (img != null) {
+                    // Esto calcula las dimensiones para centrar la imagen sin deformarla
+                    int imgWidth = img.getWidth(this);
+                    int imgHeight = img.getHeight(this);
+                    int x = (getWidth() - imgWidth) / 2;
+                    int y = (getHeight() - imgHeight) / 2;
+                    g.drawImage(img, x, y, this);
+                }
+            }
+        }
+        ;
+        pnlFondo.putClientProperty("background_image", new javax.swing.ImageIcon(getClass().getResource("/imagenes/AvionFondo.png")).getImage());
+
         pnlListar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVuelos = new javax.swing.JTable();
@@ -141,12 +159,33 @@ public class PnlVuelos extends javax.swing.JPanel {
         dchFechaSalida = new com.toedter.calendar.JDateChooser();
         lblHoraSalida = new javax.swing.JLabel();
         spnHoraSalida = new javax.swing.JSpinner();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
         pnlBotones = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton();
-        btnCancelarVuelo = new javax.swing.JButton();
-        btnFinalizarVuelo = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton("Registrar Nuevo", Iconos.GeneradorIconos.getAccionRegistrar())
+        ;
+        btnCancelarVuelo = new javax.swing.JButton("Cancelar Vuelo", Iconos.GeneradorIconos.getAccionCancelar())
+        ;
+        btnFinalizarVuelo = new javax.swing.JButton("Finalizar Vuelo", Iconos.GeneradorIconos.getAccionFinalizar())
+        ;
+        btnLimpiar = new javax.swing.JButton("Limpiar Formulario", Iconos.GeneradorIconos.getAccionLimpiar())
+        ;
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(947, 695));
+        setPreferredSize(new java.awt.Dimension(947, 695));
+
+        pnlFondo.setBackground(new java.awt.Color(255, 255, 255));
+
+        pnlListar.setBackground(new java.awt.Color(255, 255, 255));
+        pnlListar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TABLA GENERAL DE VUELOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(27, 42, 74))); // NOI18N
+        pnlListar.setOpaque(false);
+
+        jScrollPane1.setOpaque(false);
+
+        tblVuelos.setBackground(new java.awt.Color(255, 255, 255));
         tblVuelos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -163,6 +202,7 @@ public class PnlVuelos extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblVuelos.setOpaque(false);
         tblVuelos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblVuelosMouseClicked(evt);
@@ -176,171 +216,146 @@ public class PnlVuelos extends javax.swing.JPanel {
             pnlListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlListarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlListarLayout.setVerticalGroup(
             pnlListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
         );
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(27, 42, 74));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("ASIGNAR VUELOS");
+        lblTitulo.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        pnlInsertar.setBackground(new java.awt.Color(255, 255, 255));
+        pnlInsertar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ITENERARIO VUELOS", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(27, 42, 74))); // NOI18N
+        pnlInsertar.setOpaque(false);
+        pnlInsertar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cmbAvion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cmbAvion.setForeground(java.awt.Color.black);
+        pnlInsertar.add(cmbAvion, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 37, 291, -1));
 
         lblPaisDestino.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPaisDestino.setText("Pais Destino:");
+        pnlInsertar.add(lblPaisDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 119, 109, -1));
+
+        txtPaisDestino.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtPaisDestino.setForeground(new java.awt.Color(27, 42, 74));
+        pnlInsertar.add(txtPaisDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 119, 293, -1));
 
         lblCiudadDestino.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCiudadDestino.setText("Ciudad Destino:");
+        pnlInsertar.add(lblCiudadDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 153, 109, -1));
+
+        txtCiudadDestino.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtCiudadDestino.setForeground(new java.awt.Color(27, 42, 74));
+        pnlInsertar.add(txtCiudadDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 153, 293, -1));
 
         cmbPiloto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cmbPiloto.setForeground(java.awt.Color.black);
+        pnlInsertar.add(cmbPiloto, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 75, 293, -1));
 
         lblPiloto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPiloto.setText("Piloto:");
+        pnlInsertar.add(lblPiloto, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 78, 74, -1));
 
         lblAvion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblAvion.setText("Avion:");
+        pnlInsertar.add(lblAvion, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 40, 78, -1));
 
         lblFechaSalida.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblFechaSalida.setText("Fecha de Salida:");
+        pnlInsertar.add(lblFechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 187, -1, -1));
+
+        dchFechaSalida.setForeground(new java.awt.Color(27, 42, 74));
+        pnlInsertar.add(dchFechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 187, 293, -1));
 
         lblHoraSalida.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblHoraSalida.setText("Hora de Salida:");
+        pnlInsertar.add(lblHoraSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 229, 109, -1));
+        pnlInsertar.add(spnHoraSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 227, 293, -1));
 
-        javax.swing.GroupLayout pnlInsertarLayout = new javax.swing.GroupLayout(pnlInsertar);
-        pnlInsertar.setLayout(pnlInsertarLayout);
-        pnlInsertarLayout.setHorizontalGroup(
-            pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInsertarLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlInsertarLayout.createSequentialGroup()
-                        .addComponent(lblPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cmbPiloto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlInsertarLayout.createSequentialGroup()
-                        .addComponent(lblAvion, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbAvion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlInsertarLayout.createSequentialGroup()
-                        .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblCiudadDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblPaisDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblFechaSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblHoraSalida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPaisDestino)
-                            .addComponent(txtCiudadDestino)
-                            .addComponent(dchFechaSalida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                            .addComponent(spnHoraSalida))))
-                .addContainerGap(77, Short.MAX_VALUE))
-        );
-        pnlInsertarLayout.setVerticalGroup(
-            pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInsertarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cmbAvion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAvion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPiloto)
-                    .addComponent(cmbPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPaisDestino)
-                    .addComponent(txtPaisDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCiudadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCiudadDestino))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dchFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFechaSalida))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblHoraSalida)
-                    .addComponent(spnHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jSeparator4.setForeground(new java.awt.Color(0, 0, 153));
+        pnlInsertar.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 90, 10));
 
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 153));
+        pnlInsertar.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 90, 10));
+
+        pnlBotones.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBotones.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "OPERACIONES DE VUELO", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(27, 42, 74))); // NOI18N
+        pnlBotones.setOpaque(false);
+        pnlBotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnGuardar.setBackground(new java.awt.Color(46, 74, 125));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Registrar Nuevo");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
+        pnlBotones.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 283, 47));
 
+        btnCancelarVuelo.setBackground(new java.awt.Color(255, 51, 51));
         btnCancelarVuelo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancelarVuelo.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelarVuelo.setText("Cancelar Vuelo");
         btnCancelarVuelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarVueloActionPerformed(evt);
             }
         });
+        pnlBotones.add(btnCancelarVuelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 283, 43));
 
+        btnFinalizarVuelo.setBackground(new java.awt.Color(0, 102, 0));
         btnFinalizarVuelo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnFinalizarVuelo.setForeground(new java.awt.Color(255, 255, 255));
         btnFinalizarVuelo.setText("Finalizar Vuelo");
         btnFinalizarVuelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFinalizarVueloActionPerformed(evt);
             }
         });
+        pnlBotones.add(btnFinalizarVuelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 283, 45));
 
+        btnLimpiar.setBackground(new java.awt.Color(153, 153, 153));
         btnLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiar.setText("Limpiar Formulario");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
             }
         });
+        pnlBotones.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 283, 41));
 
-        javax.swing.GroupLayout pnlBotonesLayout = new javax.swing.GroupLayout(pnlBotones);
-        pnlBotones.setLayout(pnlBotonesLayout);
-        pnlBotonesLayout.setHorizontalGroup(
-            pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBotonesLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnFinalizarVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCancelarVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(19, 19, 19))
-        );
-        pnlBotonesLayout.setVerticalGroup(
-            pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBotonesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCancelarVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnFinalizarVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 153));
+        pnlBotones.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 90, 10));
+
+        jSeparator7.setForeground(new java.awt.Color(0, 0, 153));
+        pnlBotones.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 90, 10));
 
         javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
         pnlFondo.setLayout(pnlFondoLayout);
         pnlFondoLayout.setHorizontalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlFondoLayout.createSequentialGroup()
-                .addComponent(pnlInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(pnlListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlFondoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(pnlFondoLayout.createSequentialGroup()
+                                .addComponent(pnlInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         pnlFondoLayout.setVerticalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,10 +363,11 @@ public class PnlVuelos extends javax.swing.JPanel {
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                    .addComponent(pnlInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -378,6 +394,13 @@ public class PnlVuelos extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
+            try {
+                spnHoraSalida.commitEdit();
+            } catch (java.text.ParseException ex) {
+                JOptionPane.showMessageDialog(this, "La hora ingresada no es valida.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             Vuelo vuelo = new Vuelo();
             vuelo.setAvion((Avion) cmbAvion.getSelectedItem());
             vuelo.setPiloto((Piloto) cmbPiloto.getSelectedItem());
@@ -450,6 +473,10 @@ public class PnlVuelos extends javax.swing.JPanel {
     private javax.swing.JComboBox<Piloto> cmbPiloto;
     private com.toedter.calendar.JDateChooser dchFechaSalida;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JLabel lblAvion;
     private javax.swing.JLabel lblCiudadDestino;
     private javax.swing.JLabel lblFechaSalida;

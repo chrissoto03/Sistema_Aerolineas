@@ -4,6 +4,7 @@
  */
 package interfaz;
 
+import Iconos.GeneradorIconos;
 import logica.AvionLogica;
 import logica.AerolineaLogica;
 import modelo.Avion;
@@ -73,10 +74,40 @@ public class PnlAviones extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlFondo = new javax.swing.JPanel();
-        pnlListar = new javax.swing.JPanel();
+        pnlListar = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Image img = (java.awt.Image) getClientProperty("background_image");
+                if (img != null) {
+                    // Esto calcula las dimensiones para centrar la imagen sin deformarla
+                    int imgWidth = img.getWidth(this);
+                    int imgHeight = img.getHeight(this);
+                    int x = (getWidth() - imgWidth) / 2;
+                    int y = (getHeight() - imgHeight) / 2;
+                    g.drawImage(img, x, y, this);
+                }
+            }
+        };
+        pnlListar.putClientProperty("background_image", new javax.swing.ImageIcon(getClass().getResource("/imagenes/NubesFondo.png")).getImage());
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAviones = new javax.swing.JTable();
+        pnlFondo = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Image img = (java.awt.Image) getClientProperty("background_image");
+                if (img != null) {
+                    // Esto calcula las dimensiones para centrar la imagen sin deformarla
+                    int imgWidth = img.getWidth(this);
+                    int imgHeight = img.getHeight(this);
+                    int x = (getWidth() - imgWidth) / 2;
+                    int y = (getHeight() - imgHeight) / 2;
+                    g.drawImage(img, x, y, this);
+                }
+            }
+        };
+        pnlFondo.putClientProperty("background_image", new javax.swing.ImageIcon(getClass().getResource("/imagenes/AvionFondo.png")).getImage());
         lblTitulo = new javax.swing.JLabel();
         pnlInsertar = new javax.swing.JPanel();
         cmbAerolinea = new javax.swing.JComboBox<>();
@@ -87,11 +118,29 @@ public class PnlAviones extends javax.swing.JPanel {
         cmbEstado = new javax.swing.JComboBox<>();
         lblCapacidad1 = new javax.swing.JLabel();
         lblCapacidad2 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
         pnlBotones = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton("Registrar Nuevo", Iconos.GeneradorIconos.getAccionRegistrar())
+        ;
+        btnModificar = new javax.swing.JButton("Modificar Dato", Iconos.GeneradorIconos.getAccionModificar())
+        ;
+        btnLimpiar = new javax.swing.JButton("Limpiar Formulario", Iconos.GeneradorIconos.getAccionLimpiar())
+        ;
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
 
+        setBackground(new java.awt.Color(232, 236, 243));
+        setMaximumSize(new java.awt.Dimension(947, 695));
+        setPreferredSize(new java.awt.Dimension(947, 695));
+
+        pnlListar.setBackground(new java.awt.Color(255, 255, 255));
+        pnlListar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LISTADO GENERAL DE AVIONES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(27, 42, 74))); // NOI18N
+        pnlListar.setMaximumSize(new java.awt.Dimension(474, 360));
+
+        jScrollPane1.setOpaque(false);
+
+        tblAviones.setBackground(new java.awt.Color(255, 255, 255));
         tblAviones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -108,6 +157,11 @@ public class PnlAviones extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblAviones.setGridColor(new java.awt.Color(220, 227, 238));
+        tblAviones.setOpaque(false);
+        tblAviones.setSelectionBackground(new java.awt.Color(46, 74, 125));
+        tblAviones.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tblAviones.setShowGrid(true);
         tblAviones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblAvionesMouseClicked(evt);
@@ -121,167 +175,164 @@ public class PnlAviones extends javax.swing.JPanel {
             pnlListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlListarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         pnlListarLayout.setVerticalGroup(
             pnlListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlListarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        pnlFondo.setBackground(new java.awt.Color(232, 236, 243));
+        pnlFondo.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        pnlFondo.setMaximumSize(new java.awt.Dimension(878, 658));
+
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(27, 42, 74));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("ASIGNAR AVIONES");
+        lblTitulo.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+        pnlInsertar.setBackground(new java.awt.Color(255, 255, 255));
+        pnlInsertar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DEL AVION", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(27, 42, 74))); // NOI18N
+        pnlInsertar.setMaximumSize(new java.awt.Dimension(453, 208));
+        pnlInsertar.setOpaque(false);
+        pnlInsertar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cmbAerolinea.setBackground(new java.awt.Color(255, 255, 255));
         cmbAerolinea.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cmbAerolinea.setForeground(new java.awt.Color(27, 42, 74));
+        pnlInsertar.add(cmbAerolinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 46, 272, -1));
 
         lblModelo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblModelo.setText("Modelo:");
+        pnlInsertar.add(lblModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 91, 78, -1));
+
+        txtModelo.setBackground(new java.awt.Color(255, 255, 255));
+        txtModelo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtModelo.setForeground(new java.awt.Color(27, 42, 74));
+        pnlInsertar.add(txtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 91, 272, -1));
 
         lblCapacidad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCapacidad.setText("Capacidad:");
+        pnlInsertar.add(lblCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 131, -1, -1));
 
+        txtCapacidad.setBackground(new java.awt.Color(255, 255, 255));
+        txtCapacidad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtCapacidad.setForeground(new java.awt.Color(27, 42, 74));
+        pnlInsertar.add(txtCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 131, 270, -1));
+
+        cmbEstado.setBackground(new java.awt.Color(255, 255, 255));
         cmbEstado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cmbEstado.setForeground(new java.awt.Color(27, 42, 74));
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo/Inactivo", "Activo", "Inactivo" }));
+        pnlInsertar.add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 171, 160, -1));
 
         lblCapacidad1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCapacidad1.setText("Estado:");
+        pnlInsertar.add(lblCapacidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 174, 74, -1));
 
         lblCapacidad2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCapacidad2.setText("Aerolinea:");
+        pnlInsertar.add(lblCapacidad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 52, 78, -1));
 
-        javax.swing.GroupLayout pnlInsertarLayout = new javax.swing.GroupLayout(pnlInsertar);
-        pnlInsertar.setLayout(pnlInsertarLayout);
-        pnlInsertarLayout.setHorizontalGroup(
-            pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInsertarLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlInsertarLayout.createSequentialGroup()
-                        .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblCapacidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblCapacidad1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCapacidad)
-                            .addGroup(pnlInsertarLayout.createSequentialGroup()
-                                .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 110, Short.MAX_VALUE))))
-                    .addGroup(pnlInsertarLayout.createSequentialGroup()
-                        .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCapacidad2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                            .addComponent(cmbAerolinea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(62, Short.MAX_VALUE))
-        );
-        pnlInsertarLayout.setVerticalGroup(
-            pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInsertarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cmbAerolinea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCapacidad2))
-                .addGap(28, 28, 28)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblModelo)
-                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCapacidad))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCapacidad1))
-                .addContainerGap(71, Short.MAX_VALUE))
-        );
+        jSeparator4.setForeground(new java.awt.Color(0, 0, 153));
+        pnlInsertar.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 90, 10));
 
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 153));
+        pnlInsertar.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 90, 10));
+
+        pnlBotones.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBotones.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ACCIONES DE REGISTRO", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(27, 42, 74))); // NOI18N
+        pnlBotones.setMaximumSize(new java.awt.Dimension(402, 240));
+        pnlBotones.setOpaque(false);
+        pnlBotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnGuardar.setBackground(new java.awt.Color(46, 74, 125));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Registrar Nuevo");
+        btnGuardar.setIconTextGap(10);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
+        pnlBotones.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 344, 47));
 
+        btnModificar.setBackground(new java.awt.Color(70, 110, 160));
         btnModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("Modificar Dato");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
             }
         });
+        pnlBotones.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 344, 47));
 
+        btnLimpiar.setBackground(new java.awt.Color(153, 153, 153));
         btnLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiar.setText("Limpiar Formulario");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
             }
         });
+        pnlBotones.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 344, 47));
 
-        javax.swing.GroupLayout pnlBotonesLayout = new javax.swing.GroupLayout(pnlBotones);
-        pnlBotones.setLayout(pnlBotonesLayout);
-        pnlBotonesLayout.setHorizontalGroup(
-            pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotonesLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        pnlBotonesLayout.setVerticalGroup(
-            pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBotonesLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 153));
+        pnlBotones.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 90, 10));
+
+        jSeparator7.setForeground(new java.awt.Color(0, 0, 153));
+        pnlBotones.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 90, 10));
 
         javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
         pnlFondo.setLayout(pnlFondoLayout);
         pnlFondoLayout.setHorizontalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pnlFondoLayout.createSequentialGroup()
-                .addComponent(pnlInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(pnlListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlFondoLayout.createSequentialGroup()
+                        .addComponent(pnlInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         pnlFondoLayout.setVerticalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFondoLayout.createSequentialGroup()
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                     .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pnlListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -299,28 +350,11 @@ public class PnlAviones extends javax.swing.JPanel {
         cmbEstado.setSelectedItem(avionSeleccionado.getEstado());
     }//GEN-LAST:event_tblAvionesMouseClicked
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        try {
-            Avion avion = new Avion();
-            avion.setAerolinea((Aerolinea) cmbAerolinea.getSelectedItem());
-            avion.setModelo(txtModelo.getText());
-            avion.setCapacidad(Integer.parseInt(txtCapacidad.getText().trim()));
-            avion.setEstado((String) cmbEstado.getSelectedItem());
-
-            avionLogica.registrarAvion(avion);
-            JOptionPane.showMessageDialog(this, "Avion registrado con exito. ");
-            limpiarFormulario();
-            cargarTablasAviones();
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "La capacidad debe ser un numero valido.",
-                "Error", JOptionPane.ERROR_MESSAGE);
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage(),
-                "Error",JOptionPane.ERROR_MESSAGE);
-        }
-
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiarFormulario();
+        avionSeleccionado = null;
+        tblAviones.clearSelection();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         if (avionSeleccionado == null) {
@@ -349,11 +383,27 @@ public class PnlAviones extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        limpiarFormulario();
-        avionSeleccionado = null;
-        tblAviones.clearSelection();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        try {
+            Avion avion = new Avion();
+            avion.setAerolinea((Aerolinea) cmbAerolinea.getSelectedItem());
+            avion.setModelo(txtModelo.getText());
+            avion.setCapacidad(Integer.parseInt(txtCapacidad.getText().trim()));
+            avion.setEstado((String) cmbEstado.getSelectedItem());
+
+            avionLogica.registrarAvion(avion);
+            JOptionPane.showMessageDialog(this, "Avion registrado con exito. ");
+            limpiarFormulario();
+            cargarTablasAviones();
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La capacidad debe ser un numero valido.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage(),
+                "Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -363,6 +413,10 @@ public class PnlAviones extends javax.swing.JPanel {
     private javax.swing.JComboBox<Aerolinea> cmbAerolinea;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JLabel lblCapacidad;
     private javax.swing.JLabel lblCapacidad1;
     private javax.swing.JLabel lblCapacidad2;

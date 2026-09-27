@@ -4,6 +4,7 @@
  */
 package interfaz;
 
+import Iconos.GeneradorIconos;
 import logica.TicketLogica;
 import modelo.Ticket;
 import javax.swing.table.DefaultTableModel;
@@ -59,18 +60,63 @@ public class PnlListadoTiquetes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlFondo = new javax.swing.JPanel();
+        pnlFondo = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Image img = (java.awt.Image) getClientProperty("background_image");
+                if (img != null) {
+                    java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
+                    g2d.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION, java.awt.RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+                    int panelWidth = getWidth();
+                    int panelHeight = getHeight();
+                    int imgWidth = img.getWidth(this);
+                    int imgHeight = img.getHeight(this);
+
+                    double scale = Math.max((double) panelWidth / imgWidth, (double) panelHeight / imgHeight);
+                    int newWidth = (int) (imgWidth * scale);
+                    int newHeight = (int) (imgHeight * scale);
+
+                    int x = (panelWidth - newWidth) / 2;
+
+                    // TRUCO: En lugar de centrar verticalmente, restamos píxeles 
+                    // Modifica este "- 80" por un número mayor (ej. -120) si quieres que suba todavía más
+                    int y = ((panelHeight - newHeight) / 2) - 8; 
+
+                    g2d.drawImage(img, x, y, newWidth, newHeight, this);
+                }
+            }
+        };
+        pnlFondo.putClientProperty("background_image", new javax.swing.ImageIcon(getClass().getResource("/imagenes/ListarFondo.jpg")).getImage());
+
         lblTituloListado = new javax.swing.JLabel();
         pnlTablaListado = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1.getViewport().setOpaque(false);
         tblTiquetes = new javax.swing.JTable();
         pnlBotones = new javax.swing.JPanel();
-        btnActualizar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton("Actualizar", Iconos.GeneradorIconos.getAccionActualizar())
+        ;
 
-        lblTituloListado.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        pnlFondo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlFondo.setMaximumSize(new java.awt.Dimension(951, 772));
+        pnlFondo.setPreferredSize(new java.awt.Dimension(951, 772));
+
+        lblTituloListado.setBackground(new java.awt.Color(255, 255, 255));
+        lblTituloListado.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblTituloListado.setForeground(new java.awt.Color(27, 42, 74));
         lblTituloListado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTituloListado.setText("Listado Tiquetes");
+        lblTituloListado.setText("LISTADO TIQUETES");
+        lblTituloListado.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+        pnlTablaListado.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTablaListado.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        pnlTablaListado.setOpaque(false);
+
+        jScrollPane1.setOpaque(false);
+
+        tblTiquetes.setBackground(new java.awt.Color(255, 255, 255));
         tblTiquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -90,6 +136,7 @@ public class PnlListadoTiquetes extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblTiquetes.setOpaque(false);
         jScrollPane1.setViewportView(tblTiquetes);
 
         javax.swing.GroupLayout pnlTablaListadoLayout = new javax.swing.GroupLayout(pnlTablaListado);
@@ -105,12 +152,18 @@ public class PnlListadoTiquetes extends javax.swing.JPanel {
             pnlTablaListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTablaListadoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        pnlBotones.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBotones.setOpaque(false);
+
+        btnActualizar.setBackground(new java.awt.Color(46, 74, 125));
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("Actualizar");
+        btnActualizar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -130,18 +183,23 @@ public class PnlListadoTiquetes extends javax.swing.JPanel {
             pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBotonesLayout.createSequentialGroup()
                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
         pnlFondo.setLayout(pnlFondoLayout);
         pnlFondoLayout.setHorizontalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTituloListado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlTablaListado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlFondoLayout.createSequentialGroup()
-                .addGap(569, 569, 569)
-                .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondoLayout.createSequentialGroup()
+                        .addGap(569, 569, 569)
+                        .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlFondoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlTablaListado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTituloListado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         pnlFondoLayout.setVerticalGroup(
@@ -150,7 +208,7 @@ public class PnlListadoTiquetes extends javax.swing.JPanel {
                 .addComponent(lblTituloListado, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlTablaListado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -159,11 +217,11 @@ public class PnlListadoTiquetes extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

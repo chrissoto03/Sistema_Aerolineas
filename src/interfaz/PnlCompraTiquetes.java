@@ -4,6 +4,7 @@
  */
 package interfaz;
 
+import Iconos.GeneradorIconos;
 import logica.VueloLogica;
 import logica.TicketLogica;
 import modelo.Vuelo;
@@ -70,13 +71,14 @@ public class PnlCompraTiquetes extends javax.swing.JPanel {
         if (vueloSeleccionado == null) {
             return;
         }
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         List<Ticket> todosLosTickets = ticketLogica.listarTickets();
         for (Ticket t : todosLosTickets) {
             if (t.getVuelo().getIdVuelo() == vueloSeleccionado.getIdVuelo()) {
                 Object[] fila= {
                     t.getIdTicket(),
                     t.getPasajero().getNombreCompleto(),
-                    t.getVuelo().getFechaHoraSalida(),
+                    t.getVuelo().getFechaHoraSalida().format(formato),
                     t.getNumeroAsiento(),
                     t.getVuelo().getPaisDestino(),
                     t.getVuelo().getCiudadDestino()
@@ -111,20 +113,87 @@ public class PnlCompraTiquetes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlFondo = new javax.swing.JPanel();
+        pnlFondo = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Image img = (java.awt.Image) getClientProperty("background_image");
+                if (img != null) {
+                    // Habilitamos el renderizado de alta calidad para evitar que se vea borrosa
+                    java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
+                    g2d.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION, java.awt.RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+                    int panelWidth = getWidth();
+                    int panelHeight = getHeight();
+                    int imgWidth = img.getWidth(this);
+                    int imgHeight = img.getHeight(this);
+
+                    // Calculamos la proporción para escalar la imagen cubriendo todo el panel (Estilo "Cover")
+                    double scale = Math.max((double) panelWidth / imgWidth, (double) panelHeight / imgHeight);
+                    int newWidth = (int) (imgWidth * scale);
+                    int newHeight = (int) (imgHeight * scale);
+
+                    // Centramos la imagen ya escalada perfectamente
+                    int x = (panelWidth - newWidth) / 2;
+                    int y = (panelHeight - newHeight) / 2;
+
+                    g2d.drawImage(img, x, y, newWidth, newHeight, this);
+                }
+            }
+        };
+        pnlFondo.putClientProperty("background_image", new javax.swing.ImageIcon(getClass().getResource("/imagenes/NubesFondo.png")).getImage());
         pnlTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTiquetesVuelo = new javax.swing.JTable();
         lblTitulo = new javax.swing.JLabel();
-        pnlInfoVuelosDisponibles = new javax.swing.JPanel();
+        pnlInfoVuelosDisponibles = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Image img = (java.awt.Image) getClientProperty("background_image");
+                if (img != null) {
+                    // Habilitamos el renderizado de alta calidad para evitar que se vea borrosa
+                    java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
+                    g2d.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION, java.awt.RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+                    int panelWidth = getWidth();
+                    int panelHeight = getHeight();
+                    int imgWidth = img.getWidth(this);
+                    int imgHeight = img.getHeight(this);
+
+                    // Calculamos la proporción para escalar la imagen cubriendo todo el panel (Estilo "Cover")
+                    double scale = Math.max((double) panelWidth / imgWidth, (double) panelHeight / imgHeight);
+                    int newWidth = (int) (imgWidth * scale);
+                    int newHeight = (int) (imgHeight * scale);
+
+                    // Centramos la imagen ya escalada perfectamente
+                    int x = (panelWidth - newWidth) / 2;
+                    int y = (panelHeight - newHeight) / 2;
+
+                    g2d.drawImage(img, x, y, newWidth, newHeight, this);
+                }
+            }
+        };
+        pnlInfoVuelosDisponibles.putClientProperty("background_image", new javax.swing.ImageIcon(getClass().getResource("/imagenes/AvionFondo.png")).getImage());
         cmbVuelo = new javax.swing.JComboBox<>();
         lblCapacidad2 = new javax.swing.JLabel();
-        lblTituloInfoVuelosDis = new javax.swing.JLabel();
         lblInfoAvion = new javax.swing.JLabel();
+        lblInfoAvion.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(200, 200, 200)));
         lblInfoPiloto = new javax.swing.JLabel();
+        lblInfoPiloto.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(200, 200, 200)));
         lblInfoDestino = new javax.swing.JLabel();
+        lblInfoDestino.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(200, 200, 200)));
         lblInfoFechaSalida = new javax.swing.JLabel();
+        lblInfoFechaSalida.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(200, 200, 200)));
         lblInfoAsientos = new javax.swing.JLabel();
+        lblInfoAsientos.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(200, 200, 200)));
+        lblCapacidad3 = new javax.swing.JLabel();
+        lblCapacidad4 = new javax.swing.JLabel();
+        lblCapacidad5 = new javax.swing.JLabel();
+        lblCapacidad6 = new javax.swing.JLabel();
+        lblCapacidad7 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
         pnlInfoPasajeros = new javax.swing.JPanel();
         txtCedula = new javax.swing.JTextField();
         lblCedula = new javax.swing.JLabel();
@@ -135,12 +204,24 @@ public class PnlCompraTiquetes extends javax.swing.JPanel {
         lblVencPasaporte = new javax.swing.JLabel();
         lblnumLicencia1 = new javax.swing.JLabel();
         txtNumAsiento = new javax.swing.JTextField();
-        lblTituloInfoPasajeros = new javax.swing.JLabel();
         txtNombreCompleto = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
         pnlBotones = new javax.swing.JPanel();
-        btnComprarTiquete = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
+        btnComprarTiquete = new javax.swing.JButton("Comprar Tiquete", Iconos.GeneradorIconos.getAccionRegistrar())
+        ;
+        btnLimpiar = new javax.swing.JButton("Limpiar Formulario", Iconos.GeneradorIconos.getAccionLimpiar())
+        ;
 
+        pnlFondo.setBackground(new java.awt.Color(255, 255, 255));
+
+        pnlTabla.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTabla.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "REGISTRO ULTIMOS TIQUETES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(27, 42, 74))); // NOI18N
+        pnlTabla.setOpaque(false);
+
+        jScrollPane1.setOpaque(false);
+
+        tblTiquetesVuelo.setBackground(new java.awt.Color(255, 255, 255));
         tblTiquetesVuelo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -170,19 +251,26 @@ public class PnlCompraTiquetes extends javax.swing.JPanel {
             pnlTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTablaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         pnlTablaLayout.setVerticalGroup(
             pnlTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTablaLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitulo.setBackground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(27, 42, 74));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Compra de Tiquetes");
+        lblTitulo.setText("COMPRA DE TIQUETES");
+        lblTitulo.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        pnlInfoVuelosDisponibles.setBackground(new java.awt.Color(255, 255, 255));
+        pnlInfoVuelosDisponibles.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SELECCIONAR VUELO", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 1, 16), new java.awt.Color(27, 42, 74))); // NOI18N
+        pnlInfoVuelosDisponibles.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cmbVuelo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cmbVuelo.addItemListener(new java.awt.event.ItemListener() {
@@ -190,138 +278,125 @@ public class PnlCompraTiquetes extends javax.swing.JPanel {
                 cmbVueloItemStateChanged(evt);
             }
         });
+        cmbVuelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbVueloActionPerformed(evt);
+            }
+        });
+        pnlInfoVuelosDisponibles.add(cmbVuelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 44, 410, -1));
 
         lblCapacidad2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCapacidad2.setText("Vuelos:");
+        pnlInfoVuelosDisponibles.add(lblCapacidad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 44, 84, 26));
 
-        lblTituloInfoVuelosDis.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblTituloInfoVuelosDis.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTituloInfoVuelosDis.setText("Vuelos Disponibles");
+        lblInfoAvion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblInfoAvion.setForeground(new java.awt.Color(0, 0, 0));
+        pnlInfoVuelosDisponibles.add(lblInfoAvion, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 82, 208, 25));
 
-        javax.swing.GroupLayout pnlInfoVuelosDisponiblesLayout = new javax.swing.GroupLayout(pnlInfoVuelosDisponibles);
-        pnlInfoVuelosDisponibles.setLayout(pnlInfoVuelosDisponiblesLayout);
-        pnlInfoVuelosDisponiblesLayout.setHorizontalGroup(
-            pnlInfoVuelosDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInfoVuelosDisponiblesLayout.createSequentialGroup()
-                .addGroup(pnlInfoVuelosDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlInfoVuelosDisponiblesLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(lblCapacidad2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cmbVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfoVuelosDisponiblesLayout.createSequentialGroup()
-                        .addGap(0, 34, Short.MAX_VALUE)
-                        .addGroup(pnlInfoVuelosDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblInfoAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlInfoVuelosDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblInfoDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                                .addComponent(lblInfoPiloto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                                .addComponent(lblInfoAvion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblInfoFechaSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addGap(19, 19, 19))
-            .addComponent(lblTituloInfoVuelosDis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        pnlInfoVuelosDisponiblesLayout.setVerticalGroup(
-            pnlInfoVuelosDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInfoVuelosDisponiblesLayout.createSequentialGroup()
-                .addComponent(lblTituloInfoVuelosDis, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlInfoVuelosDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCapacidad2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblInfoAvion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblInfoPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblInfoDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblInfoFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblInfoAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
+        lblInfoPiloto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblInfoPiloto.setForeground(new java.awt.Color(0, 0, 0));
+        pnlInfoVuelosDisponibles.add(lblInfoPiloto, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 120, 208, 25));
 
+        lblInfoDestino.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblInfoDestino.setForeground(new java.awt.Color(0, 0, 0));
+        pnlInfoVuelosDisponibles.add(lblInfoDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 158, 208, 25));
+
+        lblInfoFechaSalida.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblInfoFechaSalida.setForeground(new java.awt.Color(0, 0, 0));
+        pnlInfoVuelosDisponibles.add(lblInfoFechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 196, 208, 25));
+
+        lblInfoAsientos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblInfoAsientos.setForeground(new java.awt.Color(0, 0, 0));
+        pnlInfoVuelosDisponibles.add(lblInfoAsientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 235, 208, 25));
+
+        lblCapacidad3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCapacidad3.setText("Avion:");
+        pnlInfoVuelosDisponibles.add(lblCapacidad3, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 89, 119, 25));
+
+        lblCapacidad4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCapacidad4.setText("Piloto:");
+        pnlInfoVuelosDisponibles.add(lblCapacidad4, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 120, 119, 26));
+
+        lblCapacidad5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCapacidad5.setText("Destino:");
+        pnlInfoVuelosDisponibles.add(lblCapacidad5, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 158, 119, 26));
+
+        lblCapacidad6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCapacidad6.setText("Fecha:");
+        pnlInfoVuelosDisponibles.add(lblCapacidad6, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 196, 119, 26));
+
+        lblCapacidad7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCapacidad7.setText("Asientos:");
+        pnlInfoVuelosDisponibles.add(lblCapacidad7, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 234, 119, 26));
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 153));
+        pnlInfoVuelosDisponibles.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 90, 10));
+
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 153));
+        pnlInfoVuelosDisponibles.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 90, 10));
+
+        pnlInfoPasajeros.setBackground(new java.awt.Color(255, 255, 255));
+        pnlInfoPasajeros.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS PASAJERO", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 1, 16), new java.awt.Color(27, 42, 74))); // NOI18N
+        pnlInfoPasajeros.setOpaque(false);
+        pnlInfoPasajeros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtCedula.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtCedula.setForeground(new java.awt.Color(27, 42, 74));
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaActionPerformed(evt);
             }
         });
+        pnlInfoPasajeros.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 250, -1));
 
         lblCedula.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCedula.setText("Cedula:");
+        pnlInfoPasajeros.add(lblCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 125, -1));
 
         lblNombreCompleto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblNombreCompleto.setText("NombreCompleto:");
+        lblNombreCompleto.setText("Nombre Completo:");
+        pnlInfoPasajeros.add(lblNombreCompleto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
+        txtPasaporte.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtPasaporte.setForeground(new java.awt.Color(27, 42, 74));
+        pnlInfoPasajeros.add(txtPasaporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 250, -1));
 
         lblPasaporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPasaporte.setText("Pasaporte:");
+        pnlInfoPasajeros.add(lblPasaporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 125, -1));
+
+        dchVencePasaporte.setForeground(new java.awt.Color(255, 255, 255));
+        pnlInfoPasajeros.add(dchVencePasaporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 250, -1));
 
         lblVencPasaporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblVencPasaporte.setText("Venc.Pasaporte:");
+        pnlInfoPasajeros.add(lblVencPasaporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 125, -1));
 
         lblnumLicencia1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblnumLicencia1.setText("NumeroAsiento:");
+        pnlInfoPasajeros.add(lblnumLicencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 125, -1));
 
-        lblTituloInfoPasajeros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblTituloInfoPasajeros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTituloInfoPasajeros.setText("Informacion Pasajero:");
+        txtNumAsiento.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtNumAsiento.setForeground(new java.awt.Color(27, 42, 74));
+        pnlInfoPasajeros.add(txtNumAsiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 250, -1));
 
-        javax.swing.GroupLayout pnlInfoPasajerosLayout = new javax.swing.GroupLayout(pnlInfoPasajeros);
-        pnlInfoPasajeros.setLayout(pnlInfoPasajerosLayout);
-        pnlInfoPasajerosLayout.setHorizontalGroup(
-            pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInfoPasajerosLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(lblTituloInfoPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(38, 38, 38))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfoPasajerosLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblPasaporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblNombreCompleto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblVencPasaporte, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblnumLicencia1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtNombreCompleto, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtPasaporte, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtCedula)
-                        .addComponent(dchVencePasaporte, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
-                    .addComponent(txtNumAsiento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlInfoPasajerosLayout.setVerticalGroup(
-            pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInfoPasajerosLayout.createSequentialGroup()
-                .addComponent(lblTituloInfoPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombreCompleto)
-                    .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPasaporte)
-                    .addComponent(txtPasaporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblVencPasaporte)
-                    .addComponent(dchVencePasaporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInfoPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblnumLicencia1)
-                    .addComponent(txtNumAsiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        txtNombreCompleto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtNombreCompleto.setForeground(new java.awt.Color(27, 42, 74));
+        pnlInfoPasajeros.add(txtNombreCompleto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 250, -1));
 
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 153));
+        pnlInfoPasajeros.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 90, 10));
+
+        jSeparator4.setForeground(new java.awt.Color(0, 0, 153));
+        pnlInfoPasajeros.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 90, 10));
+
+        pnlBotones.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBotones.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        pnlBotones.setOpaque(false);
+
+        btnComprarTiquete.setBackground(new java.awt.Color(0, 102, 0));
         btnComprarTiquete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnComprarTiquete.setForeground(new java.awt.Color(255, 255, 255));
         btnComprarTiquete.setText("Comprar Tiquete");
         btnComprarTiquete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,7 +404,9 @@ public class PnlCompraTiquetes extends javax.swing.JPanel {
             }
         });
 
+        btnLimpiar.setBackground(new java.awt.Color(153, 153, 153));
         btnLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiar.setText("Limpiar Formulario");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -344,7 +421,7 @@ public class PnlCompraTiquetes extends javax.swing.JPanel {
             .addGroup(pnlBotonesLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
                     .addComponent(btnComprarTiquete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(16, 16, 16))
         );
@@ -353,38 +430,49 @@ public class PnlCompraTiquetes extends javax.swing.JPanel {
             .addGroup(pnlBotonesLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(btnComprarTiquete, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
         pnlFondo.setLayout(pnlFondoLayout);
         pnlFondoLayout.setHorizontalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pnlFondoLayout.createSequentialGroup()
-                .addComponent(pnlInfoVuelosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlInfoPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnlFondoLayout.createSequentialGroup()
                 .addComponent(pnlTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addContainerGap())
+            .addGroup(pnlFondoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondoLayout.createSequentialGroup()
+                        .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(pnlFondoLayout.createSequentialGroup()
+                        .addComponent(pnlInfoVuelosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlInfoPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnlFondoLayout.setVerticalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFondoLayout.createSequentialGroup()
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlInfoVuelosDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlInfoPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlFondoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(pnlInfoPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))
+                    .addGroup(pnlFondoLayout.createSequentialGroup()
+                        .addComponent(pnlInfoVuelosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(pnlTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -393,11 +481,13 @@ public class PnlCompraTiquetes extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -448,6 +538,10 @@ public class PnlCompraTiquetes extends javax.swing.JPanel {
         limpiarFormulario();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
+    private void cmbVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVueloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbVueloActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComprarTiquete;
@@ -455,7 +549,16 @@ public class PnlCompraTiquetes extends javax.swing.JPanel {
     private javax.swing.JComboBox<Vuelo> cmbVuelo;
     private com.toedter.calendar.JDateChooser dchVencePasaporte;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel lblCapacidad2;
+    private javax.swing.JLabel lblCapacidad3;
+    private javax.swing.JLabel lblCapacidad4;
+    private javax.swing.JLabel lblCapacidad5;
+    private javax.swing.JLabel lblCapacidad6;
+    private javax.swing.JLabel lblCapacidad7;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblInfoAsientos;
     private javax.swing.JLabel lblInfoAvion;
@@ -465,8 +568,6 @@ public class PnlCompraTiquetes extends javax.swing.JPanel {
     private javax.swing.JLabel lblNombreCompleto;
     private javax.swing.JLabel lblPasaporte;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblTituloInfoPasajeros;
-    private javax.swing.JLabel lblTituloInfoVuelosDis;
     private javax.swing.JLabel lblVencPasaporte;
     private javax.swing.JLabel lblnumLicencia1;
     private javax.swing.JPanel pnlBotones;

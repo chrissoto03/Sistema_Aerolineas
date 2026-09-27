@@ -4,6 +4,7 @@
  */
 package interfaz;
 
+import Iconos.GeneradorIconos;
 import logica.PilotoLogica;
 import modelo.Piloto;
 import javax.swing.table.DefaultTableModel;
@@ -88,7 +89,36 @@ public class PnlPilotos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlFondo = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        pnlFondo = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Image img = (java.awt.Image) getClientProperty("background_image");
+                if (img != null) {
+                    java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
+                    g2d.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION, java.awt.RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+                    int panelWidth = getWidth();
+                    int panelHeight = getHeight();
+                    int imgWidth = img.getWidth(this);
+                    int imgHeight = img.getHeight(this);
+
+                    double scale = Math.max((double) panelWidth / imgWidth, (double) panelHeight / imgHeight);
+                    int newWidth = (int) (imgWidth * scale);
+                    int newHeight = (int) (imgHeight * scale);
+
+                    int x = (panelWidth - newWidth) / 2;
+
+                    // TRUCO: En lugar de centrar verticalmente, restamos píxeles 
+                    // Modifica este "- 80" por un número mayor (ej. -120) si quieres que suba todavía más
+                    int y = ((panelHeight - newHeight) / 2) - 110; 
+
+                    g2d.drawImage(img, x, y, newWidth, newHeight, this);
+                }
+            }
+        };
+        pnlFondo.putClientProperty("background_image", new javax.swing.ImageIcon(getClass().getResource("/imagenes/FondoPilotos.jpg")).getImage());
         pnlListar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPilotos = new javax.swing.JTable();
@@ -104,21 +134,86 @@ public class PnlPilotos extends javax.swing.JPanel {
         txtCedula = new javax.swing.JTextField();
         lblFechaNA = new javax.swing.JLabel();
         dchFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        pnlBotones = new javax.swing.JPanel();
+        btnGuardar = new javax.swing.JButton("Registrar Nuevo", Iconos.GeneradorIconos.getAccionRegistrar())
+        ;
+        btnModificar = new javax.swing.JButton("Modificar Dato", Iconos.GeneradorIconos.getAccionModificar())
+        ;
+        btnLimpiar = new javax.swing.JButton("Limpiar Formulario", Iconos.GeneradorIconos.getAccionLimpiar())
+
+        ;
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator8 = new javax.swing.JSeparator();
+        pnlPasaporte = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Image img = (java.awt.Image) getClientProperty("background_image");
+                if (img != null) {
+                    // Habilitamos el renderizado de alta calidad para evitar que se vea borrosa
+                    java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
+                    g2d.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION, java.awt.RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+                    int panelWidth = getWidth();
+                    int panelHeight = getHeight();
+                    int imgWidth = img.getWidth(this);
+                    int imgHeight = img.getHeight(this);
+
+                    // Calculamos la proporción para escalar la imagen cubriendo todo el panel (Estilo "Cover")
+                    double scale = Math.max((double) panelWidth / imgWidth, (double) panelHeight / imgHeight);
+                    int newWidth = (int) (imgWidth * scale);
+                    int newHeight = (int) (imgHeight * scale);
+
+                    // Centramos la imagen ya escalada perfectamente
+                    int x = (panelWidth - newWidth) / 2;
+                    int y = (panelHeight - newHeight) / 2;
+
+                    g2d.drawImage(img, x, y, newWidth, newHeight, this);
+                }
+            }
+        };
         txtNumLicencia = new javax.swing.JTextField();
         lblnumLicencia = new javax.swing.JLabel();
-        lblFechaVencimientoLicencia = new javax.swing.JLabel();
         dchFechaVencimiento = new com.toedter.calendar.JDateChooser();
-        pnlBotones = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
+        lblFechaVencimientoLicencia = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(947, 695));
+        setPreferredSize(new java.awt.Dimension(947, 695));
+        setRequestFocusEnabled(false);
+
+        pnlFondo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlFondo.setOpaque(false);
+
+        pnlListar.setBackground(new java.awt.Color(255, 255, 255));
+        pnlListar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LISTADO GENERAL DE PILOTOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(27, 42, 74))); // NOI18N
+        pnlListar.setOpaque(false);
+
+        jScrollPane1.setOpaque(false);
+        jScrollPane1.setViewportView(null);
+
+        tblPilotos.setBackground(new java.awt.Color(255, 255, 255));
         tblPilotos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Cedula", "Nombre", "Apellidos", "Fecha Vec.Lic", "Estado Lic"
+                "ID", "Cedula", "Nombre", "Apellidos", "Fecha Vec Lic", "Estado Lic"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -140,7 +235,7 @@ public class PnlPilotos extends javax.swing.JPanel {
         pnlListar.setLayout(pnlListarLayout);
         pnlListarLayout.setHorizontalGroup(
             pnlListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlListarLayout.createSequentialGroup()
+            .addGroup(pnlListarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
@@ -149,165 +244,159 @@ public class PnlPilotos extends javax.swing.JPanel {
             pnlListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlListarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitulo.setBackground(new java.awt.Color(232, 238, 245));
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(27, 42, 74));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("REGISTRAR PILOTOS");
+        lblTitulo.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        lblTitulo.setOpaque(true);
+
+        pnlInsertar.setBackground(new java.awt.Color(255, 255, 255));
+        pnlInsertar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS PERSONALES", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(27, 42, 74))); // NOI18N
+        pnlInsertar.setOpaque(false);
+        pnlInsertar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNombre.setText("Nombre:");
+        pnlInsertar.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 77, 82, -1));
+
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(27, 42, 74));
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        pnlInsertar.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 77, 194, -1));
 
         lblApellidos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblApellidos.setText("Apellidos:");
+        pnlInsertar.add(lblApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 117, 82, -1));
+
+        txtApellidos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtApellidos.setForeground(new java.awt.Color(27, 42, 74));
+        pnlInsertar.add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 117, 194, -1));
 
         cmbEstadoCivil.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cmbEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero/a", "Casado/a", "Divorciado/a", "Viudo/a" }));
+        pnlInsertar.add(cmbEstadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 197, 160, -1));
 
         lblEstadoCivil.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblEstadoCivil.setText("Estado Civil:");
+        pnlInsertar.add(lblEstadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 203, -1, -1));
 
         lblCedula.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCedula.setText("Cedula:");
+        pnlInsertar.add(lblCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 37, 82, -1));
+
+        txtCedula.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtCedula.setForeground(new java.awt.Color(27, 42, 74));
+        pnlInsertar.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 37, 194, -1));
 
         lblFechaNA.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblFechaNA.setText("FechaNA");
+        lblFechaNA.setText("Fecha Nac");
+        pnlInsertar.add(lblFechaNA, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 157, 82, -1));
 
-        lblnumLicencia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblnumLicencia.setText("n. Licencia:");
+        dchFechaNacimiento.setForeground(new java.awt.Color(27, 42, 74));
+        pnlInsertar.add(dchFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 157, 194, -1));
 
-        lblFechaVencimientoLicencia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblFechaVencimientoLicencia.setText("Fecha.Venc:");
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 153));
+        pnlInsertar.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 60, 10));
 
-        javax.swing.GroupLayout pnlInsertarLayout = new javax.swing.GroupLayout(pnlInsertar);
-        pnlInsertar.setLayout(pnlInsertarLayout);
-        pnlInsertarLayout.setHorizontalGroup(
-            pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInsertarLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlInsertarLayout.createSequentialGroup()
-                        .addComponent(lblFechaVencimientoLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dchFechaVencimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInsertarLayout.createSequentialGroup()
-                        .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                            .addComponent(txtCedula)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInsertarLayout.createSequentialGroup()
-                        .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblnumLicencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblFechaNA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblEstadoCivil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 13, Short.MAX_VALUE)
-                        .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNumLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtApellidos)
-                                .addComponent(dchFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)))))
-                .addGap(62, 62, 62))
-        );
-        pnlInsertarLayout.setVerticalGroup(
-            pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInsertarLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCedula)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblApellidos))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFechaNA)
-                    .addComponent(dchFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblEstadoCivil)
-                    .addComponent(cmbEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNumLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblnumLicencia))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFechaVencimientoLicencia)
-                    .addComponent(dchFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(8, Short.MAX_VALUE))
-        );
+        jSeparator4.setForeground(new java.awt.Color(0, 0, 153));
+        pnlInsertar.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 60, 10));
 
+        pnlBotones.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBotones.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ACIONES DE REGISTRO", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(27, 42, 74))); // NOI18N
+        pnlBotones.setOpaque(false);
+        pnlBotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnGuardar.setBackground(new java.awt.Color(46, 74, 125));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Registrar Nuevo");
+        btnGuardar.setIconTextGap(10);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
+        pnlBotones.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 240, 47));
 
+        btnModificar.setBackground(new java.awt.Color(70, 110, 160));
         btnModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("Modificar Dato");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
             }
         });
+        pnlBotones.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 240, 47));
 
+        btnLimpiar.setBackground(new java.awt.Color(153, 153, 153));
         btnLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiar.setText("Limpiar Formulario");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
             }
         });
+        pnlBotones.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 240, 47));
 
-        javax.swing.GroupLayout pnlBotonesLayout = new javax.swing.GroupLayout(pnlBotones);
-        pnlBotones.setLayout(pnlBotonesLayout);
-        pnlBotonesLayout.setHorizontalGroup(
-            pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBotonesLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(16, 16, 16))
-        );
-        pnlBotonesLayout.setVerticalGroup(
-            pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBotonesLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jSeparator7.setForeground(new java.awt.Color(0, 0, 153));
+        pnlBotones.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 50, 10));
+
+        jSeparator8.setForeground(new java.awt.Color(0, 0, 153));
+        pnlBotones.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 50, 10));
+
+        pnlPasaporte.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPasaporte.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS LICENCIA", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(27, 42, 74))); // NOI18N
+        pnlPasaporte.setOpaque(false);
+        pnlPasaporte.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtNumLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtNumLicencia.setForeground(new java.awt.Color(27, 42, 74));
+        pnlPasaporte.add(txtNumLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 170, -1));
+
+        lblnumLicencia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblnumLicencia.setText("N. Licencia:");
+        pnlPasaporte.add(lblnumLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 54, 84, -1));
+
+        dchFechaVencimiento.setForeground(new java.awt.Color(27, 42, 74));
+        pnlPasaporte.add(dchFechaVencimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 170, -1));
+
+        lblFechaVencimientoLicencia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFechaVencimientoLicencia.setText("Fecha Venc:");
+        pnlPasaporte.add(lblFechaVencimientoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 94, 84, -1));
+
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 153));
+        pnlPasaporte.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 10));
+
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 153));
+        pnlPasaporte.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 60, 10));
 
         javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
         pnlFondo.setLayout(pnlFondoLayout);
         pnlFondoLayout.setHorizontalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlFondoLayout.createSequentialGroup()
-                .addComponent(pnlInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
-            .addComponent(pnlListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlFondoLayout.createSequentialGroup()
+                        .addComponent(pnlInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlPasaporte, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         pnlFondoLayout.setVerticalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,10 +404,12 @@ public class PnlPilotos extends javax.swing.JPanel {
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlPasaporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -327,7 +418,7 @@ public class PnlPilotos extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,6 +497,10 @@ public class PnlPilotos extends javax.swing.JPanel {
         tblPilotos.clearSelection();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
@@ -414,7 +509,14 @@ public class PnlPilotos extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cmbEstadoCivil;
     private com.toedter.calendar.JDateChooser dchFechaNacimiento;
     private com.toedter.calendar.JDateChooser dchFechaVencimiento;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblEstadoCivil;
@@ -427,6 +529,7 @@ public class PnlPilotos extends javax.swing.JPanel {
     private javax.swing.JPanel pnlFondo;
     private javax.swing.JPanel pnlInsertar;
     private javax.swing.JPanel pnlListar;
+    private javax.swing.JPanel pnlPasaporte;
     private javax.swing.JTable tblPilotos;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCedula;
