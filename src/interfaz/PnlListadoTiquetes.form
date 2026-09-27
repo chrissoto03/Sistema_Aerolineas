@@ -219,7 +219,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;Actualizar&quot;, Iconos.GeneradorIconos.getAccionActualizar())&#xd;&#xa;"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;Actualizar&quot;, iconos.GeneradorIconos.getAccionActualizar())&#xd;&#xa;"/>
               </AuxValues>
             </Component>
           </SubComponents>

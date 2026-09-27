@@ -4,7 +4,7 @@
  */
 package interfaz;
 
-import Iconos.GeneradorIconos;
+import iconos.GeneradorIconos;
 import logica.PilotoLogica;
 import modelo.Piloto;
 import javax.swing.table.DefaultTableModel;
@@ -137,11 +137,11 @@ public class PnlPilotos extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         pnlBotones = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton("Registrar Nuevo", Iconos.GeneradorIconos.getAccionRegistrar())
+        btnGuardar = new javax.swing.JButton("Registrar Nuevo", iconos.GeneradorIconos.getAccionRegistrar())
         ;
-        btnModificar = new javax.swing.JButton("Modificar Dato", Iconos.GeneradorIconos.getAccionModificar())
+        btnModificar = new javax.swing.JButton("Modificar Dato", iconos.GeneradorIconos.getAccionModificar())
         ;
-        btnLimpiar = new javax.swing.JButton("Limpiar Formulario", Iconos.GeneradorIconos.getAccionLimpiar())
+        btnLimpiar = new javax.swing.JButton("Limpiar Formulario", iconos.GeneradorIconos.getAccionLimpiar())
 
         ;
         jSeparator7 = new javax.swing.JSeparator();

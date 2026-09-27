@@ -704,7 +704,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnComprarTiqueteActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;Comprar Tiquete&quot;, Iconos.GeneradorIconos.getAccionRegistrar())&#xd;&#xa;"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;Comprar Tiquete&quot;, iconos.GeneradorIconos.getAccionRegistrar())&#xd;&#xa;"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="btnLimpiar">
@@ -724,7 +724,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;Limpiar Formulario&quot;, Iconos.GeneradorIconos.getAccionLimpiar())&#xd;&#xa;"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;Limpiar Formulario&quot;, iconos.GeneradorIconos.getAccionLimpiar())&#xd;&#xa;"/>
               </AuxValues>
             </Component>
           </SubComponents>

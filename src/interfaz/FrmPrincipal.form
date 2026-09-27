@@ -97,7 +97,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMenuAvionesActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;AVIONES&quot;, Iconos.GeneradorIconos.getAvion())&#xd;&#xa;"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;AVIONES&quot;, iconos.GeneradorIconos.getAvion())&#xd;&#xa;"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="btnMenuPilotos">
@@ -129,7 +129,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMenuPilotosActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;PILOTOS&quot;, Iconos.GeneradorIconos.getPiloto())&#xd;&#xa;"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;PILOTOS&quot;, iconos.GeneradorIconos.getPiloto())&#xd;&#xa;"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="btnMenuVuelos">
@@ -161,7 +161,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMenuVuelosActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;VUELOS&quot;, Iconos.GeneradorIconos.getVuelo())&#xd;&#xa;"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;VUELOS&quot;, iconos.GeneradorIconos.getVuelo())&#xd;&#xa;"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="btnMenuCompra">
@@ -193,7 +193,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMenuCompraActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;COMPRA TIQUETES&quot;, Iconos.GeneradorIconos.getTiquete())&#xd;&#xa;"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;COMPRA TIQUETES&quot;, iconos.GeneradorIconos.getTiquete())&#xd;&#xa;"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="btnMenuListado">
@@ -225,7 +225,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMenuListadoActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;LISTADO TIQUETES&quot;, Iconos.GeneradorIconos.getListadoTiquetes())&#xd;&#xa;"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(&quot;LISTADO TIQUETES&quot;, iconos.GeneradorIconos.getListadoTiquetes())&#xd;&#xa;"/>
               </AuxValues>
             </Component>
           </SubComponents>

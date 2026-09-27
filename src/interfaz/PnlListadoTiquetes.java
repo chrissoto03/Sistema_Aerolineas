@@ -4,7 +4,7 @@
  */
 package interfaz;
 
-import Iconos.GeneradorIconos;
+import iconos.GeneradorIconos;
 import logica.TicketLogica;
 import modelo.Ticket;
 import javax.swing.table.DefaultTableModel;
@@ -96,7 +96,7 @@ public class PnlListadoTiquetes extends javax.swing.JPanel {
         jScrollPane1.getViewport().setOpaque(false);
         tblTiquetes = new javax.swing.JTable();
         pnlBotones = new javax.swing.JPanel();
-        btnActualizar = new javax.swing.JButton("Actualizar", Iconos.GeneradorIconos.getAccionActualizar())
+        btnActualizar = new javax.swing.JButton("Actualizar", iconos.GeneradorIconos.getAccionActualizar())
         ;
 
         pnlFondo.setBackground(new java.awt.Color(255, 255, 255));

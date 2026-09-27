@@ -4,7 +4,7 @@
  */
 package interfaz;
 
-import Iconos.GeneradorIconos;
+import iconos.GeneradorIconos;
 import logica.AvionLogica;
 import logica.AerolineaLogica;
 import modelo.Avion;
@@ -121,11 +121,11 @@ public class PnlAviones extends javax.swing.JPanel {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         pnlBotones = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton("Registrar Nuevo", Iconos.GeneradorIconos.getAccionRegistrar())
+        btnGuardar = new javax.swing.JButton("Registrar Nuevo", iconos.GeneradorIconos.getAccionRegistrar())
         ;
-        btnModificar = new javax.swing.JButton("Modificar Dato", Iconos.GeneradorIconos.getAccionModificar())
+        btnModificar = new javax.swing.JButton("Modificar Dato", iconos.GeneradorIconos.getAccionModificar())
         ;
-        btnLimpiar = new javax.swing.JButton("Limpiar Formulario", Iconos.GeneradorIconos.getAccionLimpiar())
+        btnLimpiar = new javax.swing.JButton("Limpiar Formulario", iconos.GeneradorIconos.getAccionLimpiar())
         ;
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();

@@ -4,7 +4,7 @@
  */
 package interfaz;
 
-import Iconos.GeneradorIconos;
+import iconos.GeneradorIconos;
 import java.awt.CardLayout;
 
 /**
@@ -55,15 +55,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pnlFondo = new javax.swing.JPanel();
         pnlMenu = new javax.swing.JPanel();
-        btnMenuAviones = new javax.swing.JButton("AVIONES", Iconos.GeneradorIconos.getAvion())
+        btnMenuAviones = new javax.swing.JButton("AVIONES", iconos.GeneradorIconos.getAvion())
         ;
-        btnMenuPilotos = new javax.swing.JButton("PILOTOS", Iconos.GeneradorIconos.getPiloto())
+        btnMenuPilotos = new javax.swing.JButton("PILOTOS", iconos.GeneradorIconos.getPiloto())
         ;
-        btnMenuVuelos = new javax.swing.JButton("VUELOS", Iconos.GeneradorIconos.getVuelo())
+        btnMenuVuelos = new javax.swing.JButton("VUELOS", iconos.GeneradorIconos.getVuelo())
         ;
-        btnMenuCompra = new javax.swing.JButton("COMPRA TIQUETES", Iconos.GeneradorIconos.getTiquete())
+        btnMenuCompra = new javax.swing.JButton("COMPRA TIQUETES", iconos.GeneradorIconos.getTiquete())
         ;
-        btnMenuListado = new javax.swing.JButton("LISTADO TIQUETES", Iconos.GeneradorIconos.getListadoTiquetes())
+        btnMenuListado = new javax.swing.JButton("LISTADO TIQUETES", iconos.GeneradorIconos.getListadoTiquetes())
         ;
         pnlContenido = new javax.swing.JPanel();
 

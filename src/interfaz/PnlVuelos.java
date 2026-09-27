@@ -4,7 +4,7 @@
  */
 package interfaz;
 
-import Iconos.GeneradorIconos;
+import iconos.GeneradorIconos;
 import logica.*;
 import modelo.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -162,13 +162,13 @@ public class PnlVuelos extends javax.swing.JPanel {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         pnlBotones = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton("Registrar Nuevo", Iconos.GeneradorIconos.getAccionRegistrar())
+        btnGuardar = new javax.swing.JButton("Registrar Nuevo", iconos.GeneradorIconos.getAccionRegistrar())
         ;
-        btnCancelarVuelo = new javax.swing.JButton("Cancelar Vuelo", Iconos.GeneradorIconos.getAccionCancelar())
+        btnCancelarVuelo = new javax.swing.JButton("Cancelar Vuelo", iconos.GeneradorIconos.getAccionCancelar())
         ;
-        btnFinalizarVuelo = new javax.swing.JButton("Finalizar Vuelo", Iconos.GeneradorIconos.getAccionFinalizar())
+        btnFinalizarVuelo = new javax.swing.JButton("Finalizar Vuelo", iconos.GeneradorIconos.getAccionFinalizar())
         ;
-        btnLimpiar = new javax.swing.JButton("Limpiar Formulario", Iconos.GeneradorIconos.getAccionLimpiar())
+        btnLimpiar = new javax.swing.JButton("Limpiar Formulario", iconos.GeneradorIconos.getAccionLimpiar())
         ;
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();

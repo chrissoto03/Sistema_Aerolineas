@@ -4,7 +4,7 @@
  */
 package interfaz;
 
-import Iconos.GeneradorIconos;
+import iconos.GeneradorIconos;
 import logica.VueloLogica;
 import logica.TicketLogica;
 import modelo.Vuelo;
@@ -208,9 +208,9 @@ public class PnlCompraTiquetes extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         pnlBotones = new javax.swing.JPanel();
-        btnComprarTiquete = new javax.swing.JButton("Comprar Tiquete", Iconos.GeneradorIconos.getAccionRegistrar())
+        btnComprarTiquete = new javax.swing.JButton("Comprar Tiquete", iconos.GeneradorIconos.getAccionRegistrar())
         ;
-        btnLimpiar = new javax.swing.JButton("Limpiar Formulario", Iconos.GeneradorIconos.getAccionLimpiar())
+        btnLimpiar = new javax.swing.JButton("Limpiar Formulario", iconos.GeneradorIconos.getAccionLimpiar())
         ;
 
         pnlFondo.setBackground(new java.awt.Color(255, 255, 255));
