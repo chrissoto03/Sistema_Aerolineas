@@ -9,22 +9,22 @@ Sistema de escritorio desarrollado en **Java** con **NetBeans**, que permite ges
 ## Capturas de pantalla
 
 ### Gestión de Aviones
-![alt text](image-2.png)
+![Pantalla de gestión de aviones](screenshots/Aviones.png)
 
 ### Gestión de Pilotos
-![alt text](image-3.png)
+![Pantalla de gestión de pilotos](screenshots/Pilotos.png)
 
 ### Gestión de Vuelos
-![alt text](image-4.png)
+![Pantalla de gestión de vuelos](screenshots/Vuelos.png)
 
 ### Compra de Tiquetes
-![alt text](image-1.png)
+![Pantalla de compra de tiquetes](screenshots/CompraTiquetes.png)
 
 ### Listado de Tiquetes Vendidos
-![alt text](image.png)
+![Listado de tiquetes vendidos](screenshots/ListadoTiquetes.png)
 
 ### Ejemplo de validación de reglas de negocio
-![alt text](image-5.png)
+![Ejemplo de mensaje de validación](screenshots/Validaciones.png)
 
 ---
 
