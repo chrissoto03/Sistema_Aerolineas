@@ -46,7 +46,7 @@ public class AvionLogica {
         if (avion.getModelo() == null || avion.getModelo().trim().isEmpty()) {
             throw new Exception("Es obligatorio seleccionar el modelo del avion. ");
         }
-        if (avion.getCapacidad() < 0) {
+        if (avion.getCapacidad() <= 0) {
             throw new Exception("La capacidad debe ser mayor a 0. ");
         }
         if (avion.getEstado() == null || avion.getEstado().trim().isEmpty()) {
